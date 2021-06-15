@@ -12,8 +12,9 @@ function App() {
     <div className="App">
       <Header/>
       <Switch>
-        <Route path='/login' component={Login}/>
         <PrivateRoute path='/friends' component={FriendsList}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/' component={Login}/>
       </Switch>
     </div>
     </Router>
