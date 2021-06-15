@@ -13,9 +13,15 @@ function FriendsList(){
       .catch(err => alert(err));
   }, []);
 
+  const addFriend = (friend) => {
+    axiosWithAuth().post('/friends', friend)
+      .then(res => setFriends(res.data))
+      .catch(err => alert(err));
+  };
+
   return (
     <div>
-      <FriendForm setFriends={setFriends}/>
+      <FriendForm friendFunc={addFriend}/>
       {
         friends.map(friend => {
           return <Friend key={friend.id} setFriends={setFriends} {...friend}/>;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-function FriendForm({ setFriends }){
+function FriendForm({ friendFunc }){
   const [formFriend, setFormFriend] = useState({
     name: '',
     age: '0',
@@ -17,12 +17,10 @@ function FriendForm({ setFriends }){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth().post('/friends', {
+    friendFunc({
       ...formFriend,
       age: Number(formFriend.age)
-    })
-      .then(res => setFriends(res.data))
-      .catch(err => alert(err));
+    });
   };
 
   return (
@@ -46,7 +44,7 @@ function FriendForm({ setFriends }){
         value={formFriend.email}
         onChange={handleChange}
       />
-      <button>Add Friend</button>
+      <button>Submit</button>
     </form>
   );
 }
