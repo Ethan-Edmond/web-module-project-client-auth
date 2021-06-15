@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 function FriendForm(){
   const [formFriend, setFormFriend] = useState({
@@ -17,13 +17,9 @@ function FriendForm(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/friends', {
+    axiosWithAuth().post('/friends', {
       ...formFriend,
       age: Number(formFriend.age)
-    }, {
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
     })
       .then(res => console.log(res));
   };

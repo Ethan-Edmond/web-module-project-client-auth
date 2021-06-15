@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
+import base from '../utils/base';
 
 function Login(props){
   const [formVal, setFormVal] = useState({
@@ -17,7 +18,7 @@ function Login(props){
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formVal);
-    axios.post('http://localhost:5000/api/login', formVal)
+    base.post('/login', formVal)
       .then(res => {
         window.localStorage.setItem('token', res.data.payload);
         props.history.push('/friends');
