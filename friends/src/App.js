@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/Header';
@@ -11,8 +11,10 @@ function App() {
     <Router>
     <div className="App">
       <Header/>
-      <Route path='/login' component={Login}/>
-      <PrivateRoute path='/friends' component={FriendsList}/>
+      <Switch>
+        <Route path='/login' component={Login}/>
+        <PrivateRoute path='/friends' component={FriendsList}/>
+      </Switch>
     </div>
     </Router>
   );

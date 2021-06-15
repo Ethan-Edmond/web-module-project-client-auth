@@ -17,7 +17,6 @@ function Login(props){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formVal);
     base.post('/login', formVal)
       .then(res => {
         window.localStorage.setItem('token', res.data.payload);
